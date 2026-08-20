@@ -16,4 +16,12 @@ def test_initialize_database_creates_profissionais_table(tmp_path: Path):
     assert resultado is not None
     assert resultado[0] == "profissionais"
 
+    cursor.execute(
+        "SELECT name FROM sqlite_master Where type ='table' AND name ='agendamentos';"
+    )
+    resultado = cursor.fetchone()
+
+    assert resultado is not None
+    assert resultado[0] == "agendamentos"
+
     conn.close()
